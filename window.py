@@ -23,11 +23,11 @@ class Window(Canvas):
         x=startx
         xl=0
         maxy=max(func(value) for value in range(startx, endx+1))
-        print(maxy)
+        #print(maxy)
         while x<endx:
             y=func(x)
             x+=rangex/self.width
-            print(x,y)
+            #print(x,y)
             self.create_circle(xl,self.height*(1-y/maxy),3,"red")
             xl+=1
 
