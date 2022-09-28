@@ -31,7 +31,7 @@ class Window(Canvas):
         #     self.create_circle(x,y,3, "red")
         x=startx
         xl=0
-        maxy=max(func(value) for value in range(startx, endx+1))
+        maxy=max(func(value/10) for value in range(startx, (endx+1)*10-startx))+(self.height/20000)
         #print(maxy)
         while x<endx:
             y=func(x)
@@ -47,7 +47,7 @@ class Window(Canvas):
         #     print(a,y)
         #     self.create_circle(x,y,3, "red")
             rangex=endx-startx
-            maxy=max(func(value) for value in range(startx, endx+1))
+            maxy=max(func(value/10) for value in range(startx, (endx+1)*10-startx))+(self.height/20000)
             for x in listx:
                 y=func(x)
                 self.create_circle((x-startx)*self.width/rangex,self.height*(1-y/maxy),6,"blue")
@@ -56,3 +56,14 @@ class Window(Canvas):
             # y=func(x2)
             # self.create_circle(x2*rangex/self.width,self.height*(1-y/maxy),6,"blue")
 
+    # def max(func, start, end):
+    #     i=0
+    #     m=start
+    #     for x in range(10*(end-start)):
+    #             t=func(m+x/10)
+    #             if i<t:
+    #                 i=func(m+x/10)
+
+    #     return i
+            
+    

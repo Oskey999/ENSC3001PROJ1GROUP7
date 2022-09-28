@@ -17,8 +17,8 @@ from mathstuff import chebyshev, freudstien
 def main():
     root=Tk()
     root.title("4-bar")
-    w=500
-    h=500
+    w=1500
+    h=1000
     root.minsize(w,h)
     window= Window(w,h)
     window.pack(pady=40,padx=40)
@@ -32,13 +32,16 @@ def main():
     #chebyshev(3,1,2)
     window.drawspacing(functii,chebyshev(3,1,2),1,2)
 
-    freudstien(1,2,3,functii)
+    #freudstien(1,2,3,functii)
 
     #2nd example
-    # def functii(x):
-    #     return math.sin(x)
+    def functii(x):
+        return math.sin(x)
 
-    # window.graph(functii,0,3)
+
+    window.graph(functii,0,3)
+    window.drawspacing(functii,chebyshev(3,0,3),0,3)
+
 
     #must be last
     root.mainloop() 
