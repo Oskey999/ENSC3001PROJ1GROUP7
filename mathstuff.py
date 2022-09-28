@@ -38,8 +38,8 @@ def freudstien(x1,x2,x3, funct):
     #result[0]=k1
     res= dict()
     res["l1"]=1
-    res["l4"]=1/result[0]
-    res["l2"]=1/result[1]
+    res["l4"]=res["l1"]/result[0]
+    res["l2"]=res["l1"]/result[1]
     l3 =sym.symbols('l3')
     eq4= sym.Eq((l3^2-res["l1"]^2-res["l2"]^2-res["l4"]^2)/(2*res["l4"]*res["l2"]), result[2])
     res["l3"]=sym.solve(eq4,l3)
