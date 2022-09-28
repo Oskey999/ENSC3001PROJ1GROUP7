@@ -4,7 +4,9 @@ import sympy as sym
 
 
 def chebyshev(n, start, end):
+    #list of 
     listx=[]
+
     for j in range(n):
         listx.append(0.5*(start+end)-0.5*(end-start)*math.cos((2*j+1)*math.pi/6))
     print("Chebyshev spacing is:")
@@ -24,18 +26,19 @@ def freudstien(listx,listt, maxx,minx, funct):
     t21= sym.Eq(minx*t2+b2,listt[0])#theta2
     t22= sym.Eq(maxx*t2+b2,listt[1])#theta4
     tb2= sym.solve([t21,t22],(t2,b2))
-
+    #[A,B]
+    print(tb2)
     t4,b4= sym.symbols('t4,b4')
     t41= sym.Eq(minx*t4+b4,listt[2])#theta2
     t42= sym.Eq(maxx*t4+b4,listt[3])#theta4
     tb4= sym.solve([t21,t22],(t4,b4))
 
-    theta21=tb2[0]*listx[0]+tb2[1]
-    theta41=tb4[0]*listx[0]+tb4[1]
-    theta22=tb2[0]*listx[1]+tb2[1]
-    theta42=tb4[0]*listx[1]+tb4[1]
-    theta23=tb2[0]*listx[2]+tb2[1]
-    theta43=tb4[0]*listx[2]+tb4[1]
+    theta21=tb2['t2']*listx[0]+tb2['b2']
+    theta41=tb4['t4']*listx[0]+tb4['b4']
+    theta22=tb2['t2']*listx[1]+tb2['b2']
+    theta42=tb4['t4']*listx[1]+tb4['b4']
+    theta23=tb2['t2']*listx[2]+tb2['b2']
+    theta43=tb4['t4']*listx[2]+tb4['b4']
     #
     #simultaneous with three freudenstiens
     k1,k2,k3 = sym.symbols('k1,k2,k3')
@@ -58,4 +61,4 @@ def freudstien(listx,listt, maxx,minx, funct):
 
 
     #l1=0
-    return res
+    return res  

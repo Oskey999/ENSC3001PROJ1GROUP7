@@ -15,6 +15,7 @@ from mathstuff import chebyshev, freudstien
 #     return listx
 
 def main():
+    #print (eval("x+5"))
     root=Tk()
     root.title("4-bar")
     w=1500
@@ -32,7 +33,7 @@ def main():
     listx=chebyshev(3,1,2)
     window.drawspacing(functii,listx,1,2)
 
-    listt=[0,90,0,90]
+    listt=[0,105,0,240]
     freudstien(listx,listt,1,2,functii)
 
     #2nd example
