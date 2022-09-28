@@ -29,10 +29,11 @@ def main():
         return log10(x).real
 
     window.graph(functii,1,2)
-    #chebyshev(3,1,2)
-    window.drawspacing(functii,chebyshev(3,1,2),1,2)
+    listx=chebyshev(3,1,2)
+    window.drawspacing(functii,listx,1,2)
 
-    #freudstien(1,2,3,functii)
+    listt=[0,90,0,90]
+    freudstien(listx,listt,1,2,functii)
 
     #2nd example
     def functii(x):

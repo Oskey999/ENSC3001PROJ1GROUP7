@@ -17,14 +17,25 @@ def chebyshev(n, start, end):
 #k1=l1/l4
 #k2=l1/l2
 #k3= 
-def freudstien(x1,x2,x3, funct):
+def freudstien(listx,listt, maxx,minx, funct):
     #turn xs into 3 sets of thetas
-    theta21=3
-    theta41=4
-    theta22=5
-    theta42=3
-    theta23=2
-    theta43=4
+    #theta2min,theta2max, theta4min, theta4max
+    t2,b2= sym.symbols('t2,b2')
+    t21= sym.Eq(minx*t2+b2,listt[0])#theta2
+    t22= sym.Eq(maxx*t2+b2,listt[1])#theta4
+    tb2= sym.solve([t21,t22],(t2,b2))
+
+    t4,b4= sym.symbols('t4,b4')
+    t41= sym.Eq(minx*t4+b4,listt[2])#theta2
+    t42= sym.Eq(maxx*t4+b4,listt[3])#theta4
+    tb4= sym.solve([t21,t22],(t4,b4))
+
+    theta21=tb2[0]*listx[0]+tb2[1]
+    theta41=tb4[0]*listx[0]+tb4[1]
+    theta22=tb2[0]*listx[1]+tb2[1]
+    theta42=tb4[0]*listx[1]+tb4[1]
+    theta23=tb2[0]*listx[2]+tb2[1]
+    theta43=tb4[0]*listx[2]+tb4[1]
     #
     #simultaneous with three freudenstiens
     k1,k2,k3 = sym.symbols('k1,k2,k3')
