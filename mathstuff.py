@@ -4,7 +4,7 @@ import sympy as sym
 
 
 def chebyshev(n, start, end):
-    #list of 
+    #list of x positions from chebyshev spacing
     listx=[]
 
     for j in range(n):
