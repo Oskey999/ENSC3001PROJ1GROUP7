@@ -40,16 +40,19 @@ def main():
         return eval(t)
 
     #find min and max x value
-    rangemin= eval(input("what is the minimum value of x?\n"))
-    rangemax =eval(input("what is the maximum value of x?\n"))
+    min=input("what is the minimum value of x?\n")
+    max=input("what is the maximum value of x?\n")
+    pi= math.pi
+    rangemin= eval(min)
+    rangemax =eval(max)
 
     #math to do
     #graph function
-    window.graph(functii,rangemin,rangemax)
+    #window.graph(functii,rangemin,rangemax)
     #find chebyshev spacing and put in a list of x values
-    listx=chebyshev(3,1,2)
+    listx=chebyshev(3,rangemin,rangemax)
     #draw points on graph for points of chebyshev spacing
-    window.drawspacing(functii,listx,rangemin,rangemax)
+    #window.drawspacing(functii,listx,rangemin,rangemax)
     # finds the 4 lengths
     freudstienloop(listx,rangemin,rangemax,functii)
 

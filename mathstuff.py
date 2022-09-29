@@ -24,6 +24,11 @@ def chebyshev(n, start, end):
 #k2=l1/l2
 #k3= 
 def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
+    res= dict()
+    res["l1"]=-1
+    res["l2"]=-1
+    res["l3"]=-1
+    res["l4"]=-1
     #turn spacing x values into 3 sets of thetas
     #find gamma=ax+b
     #t2=a, b2=b
@@ -31,14 +36,24 @@ def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
     t21= sym.Eq(minx*t2+b2,gmin)
     t22= sym.Eq(maxx*t2+b2,gmax)
     tb2= sym.solve([t21,t22],(t2,b2))
+    if len(tb2)<2:
+        print("tb2")
+        return res
     #[A,B]
-    #print(tb2)
     #find beta=cy+d
     #t4=c, b4=d
     t4,b4= sym.symbols('t4,b4')
     t41= sym.Eq(funct(minx)*t4+b4,bmin)
-    t42= sym.Eq(funct(maxx)*t4+b4,bmax)
+    if funct(minx)==funct(maxx):
+        t42= sym.Eq(funct((maxx+minx)/2)*t4+b4,(bmax+bmin)/2)
+    else:
+        t42= sym.Eq(funct(maxx)*t4+b4,bmax)
     tb4= sym.solve([t41,t42],(t4,b4))
+    if len(tb4)<2:
+        print("tb4")
+        return res
+
+
     
     #use values of a,b,c,d to find theta 2,4 values at chebyshev spacing points
     theta21=math.radians(tb2[t2]*listx[0]+tb2[b2])
@@ -56,7 +71,9 @@ def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
     result = sym.solve([Eq1,Eq2,Eq3],(k1,k2,k3))
     #convert k values  into lengths
     # set l1 to 1
-    res= dict()
+    if len(result)<3:
+        return res
+    
     res["l1"]=1
     res["l4"]=res["l1"]/result[k1]
     res["l2"]=res["l1"]/result[k2]
@@ -86,9 +103,16 @@ def freudstienloop(listx, maxx,minx, funct):
         # change values for angles
         # pretty weak
         gmax+=15
-        bmax+=15
         gmax= gmax%360
-        bmax= bmax%360
+        if gmax==165 :
+            bmax+=15
+            bmax= bmax%360
+            # gmin-=5
+            # bmin-=5
+            if bmax==330:
+                print("failure")
+                return[]
+            
     
     print(sol)
     return sol
