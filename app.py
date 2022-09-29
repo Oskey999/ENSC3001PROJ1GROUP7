@@ -24,6 +24,7 @@ def main():
     fun=input("type the function you want to use (use x)\n")
 
     #define function
+    # pretty weak
     def functii(xv):
         x=xv
         #filter sin
@@ -41,7 +42,7 @@ def main():
     #find min and max x value
     rangemin= eval(input("what is the minimum value of x?\n"))
     rangemax =eval(input("what is the maximum value of x?\n"))
-    
+
     #math to do
     #graph function
     window.graph(functii,rangemin,rangemax)
@@ -51,6 +52,8 @@ def main():
     window.drawspacing(functii,listx,rangemin,rangemax)
     # finds the 4 lengths
     freudstienloop(listx,rangemin,rangemax,functii)
+
+    #for the window must be last
     root.mainloop()
 
 

@@ -83,6 +83,8 @@ def freudstienloop(listx, maxx,minx, funct):
     #repeat until all lengths are greater than 0
     while(sol["l1"]<0 or sol["l2"]<0 or sol["l3"]<0 or sol["l4"]<0):
         sol=freudstien(listx,maxx,minx,funct,gmin,gmax,bmin,bmax)
+        # change values for angles
+        # pretty weak
         gmax+=15
         bmax+=15
         gmax= gmax%360
