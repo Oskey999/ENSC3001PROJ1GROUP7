@@ -3,7 +3,7 @@ import math
 from tkinter import *
 
 from window import Window
-from mathstuff import chebyshev, freudstien
+from mathstuff import chebyshev, freudstienloop
 
 # def chebyshev(n, start, end):
 #     listx=[]
@@ -33,8 +33,8 @@ def main():
     listx=chebyshev(3,1,2)
     window.drawspacing(functii,listx,1,2)
 
-    listt=[0,105,0,240]
-    freudstien(listx,listt,1,2,functii)
+
+    freudstienloop(listx,1,2,functii)
 
     #2nd example
     def functii(x):
@@ -42,7 +42,9 @@ def main():
 
 
     window.graph(functii,0,3)
-    window.drawspacing(functii,chebyshev(3,0,3),0,3)
+    listx=chebyshev(3,0,3)
+    window.drawspacing(functii,listx,0,3)
+    freudstienloop(listx,0,3,functii)
 
 
     #must be last
