@@ -17,6 +17,7 @@ def main():
     window.pack(pady=40,padx=40)
     
     #1st example
+    print("log")
     def functii(x):
         return log10(x).real
 
@@ -28,6 +29,7 @@ def main():
     freudstienloop(listx,1,2,functii)
 
     #2nd example
+    print("sin")
     def functii(x):
         return math.sin(x)
 

@@ -1,13 +1,6 @@
 from tkinter import *
 
-# def chebyshev(n, start, end):
-#     listx=[]
-#     for j in range(n):
-#         listx.append(0.5*(start+end)-0.5*(end-start)*math.cos((2*j)*math.pi/6))
-#     print("Chebyshcev spacing is:")
-#     print("in range-",start,":",end)
-#     print(listx)
-#     return listx
+
 
 class Window(Canvas):
     def __init__(self,width1,height1):
@@ -24,46 +17,25 @@ class Window(Canvas):
 
     def graph(self,func,startx, endx):
         rangex=endx-startx
-        # for x in range(self.width):
-        #     a= x*rangex/self.width
-        #     y=self.height-func(a+startx)
-        #     print(a,y)
-        #     self.create_circle(x,y,3, "red")
+        
         x=startx
         xl=0
         maxy=max(func(value/10) for value in range(startx, (endx+1)*10-startx))+(self.height/20000)
-        #print(maxy)
         while x<endx:
             y=func(x)
             x+=rangex/self.width
-            #print(x,y)
             self.create_circle(xl,self.height*(1-y/maxy),3,"red")
             xl+=1
 
     def drawspacing(self,func,listx,startx, endx):
-        # for x in range(self.width):
-        #     a= x*rangex/self.width
-        #     y=self.height-func(a+startx)
-        #     print(a,y)
-        #     self.create_circle(x,y,3, "red")
+        
             rangex=endx-startx
             maxy=max(func(value/10) for value in range(startx, (endx+1)*10-startx))+(self.height/20000)
             for x in listx:
                 y=func(x)
                 self.create_circle((x-startx)*self.width/rangex,self.height*(1-y/maxy),6,"blue")
-            # y=func(x1)
-            # self.create_circle(x1*rangex/self.width,self.height*(1-y/maxy),6,"blue")
-            # y=func(x2)
-            # self.create_circle(x2*rangex/self.width,self.height*(1-y/maxy),6,"blue")
+            
 
-    # def max(func, start, end):
-    #     i=0
-    #     m=start
-    #     for x in range(10*(end-start)):
-    #             t=func(m+x/10)
-    #             if i<t:
-    #                 i=func(m+x/10)
-
-    #     return i
+   
             
     
