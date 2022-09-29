@@ -4,7 +4,7 @@ import math
 #for the window
 from tkinter import *
 from window import Window
-from mathstuff import chebyshev, freudstien
+from mathstuff import chebyshev, freudstienloop
 #for the evaluation
 import re
 
@@ -32,9 +32,9 @@ def main():
         #filter log
         elif "log" in fun:
             x=math.log10(xv)
-            m=t.replace("log","")
+            t=fun.replace("log","")
         #will evaluate polynomial with a set value of x
-        return eval(m)
+        return eval(t)
     #find min and max x value
     rangemin= eval(input("what is the minimum value of x?\n"))
     rangemax =eval(input("what is the maximum value of x?\n"))
@@ -45,6 +45,7 @@ def main():
     listx=chebyshev(3,1,2)
     #draw points on graph for points of chebyshev spacing
     window.drawspacing(functii,listx,rangemin,rangemax)
+    freudstienloop(listx,rangemin,rangemax,functii)
     root.mainloop()
 
 
