@@ -17,10 +17,12 @@ def main():
     root.minsize(w,h)
     window= Window(w,h)
     window.pack(pady=40,padx=40)
+
     #prompts start
     print("Project")
     #get input function
     fun=input("type the function you want to use (use x)\n")
+
     #define function
     def functii(xv):
         x=xv
@@ -35,9 +37,11 @@ def main():
             t=fun.replace("log","")
         #will evaluate polynomial with a set value of x
         return eval(t)
+
     #find min and max x value
     rangemin= eval(input("what is the minimum value of x?\n"))
     rangemax =eval(input("what is the maximum value of x?\n"))
+    
     #math to do
     #graph function
     window.graph(functii,rangemin,rangemax)
@@ -45,6 +49,7 @@ def main():
     listx=chebyshev(3,1,2)
     #draw points on graph for points of chebyshev spacing
     window.drawspacing(functii,listx,rangemin,rangemax)
+    # finds the 4 lengths
     freudstienloop(listx,rangemin,rangemax,functii)
     root.mainloop()
 

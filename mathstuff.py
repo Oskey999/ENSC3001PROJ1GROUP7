@@ -1,4 +1,5 @@
 import math
+#need to install sympy  using command below
 #pip3 install sympy
 import sympy as sym
 
@@ -9,9 +10,12 @@ def chebyshev(n, start, end):
 
     for j in range(n):
         listx.append(0.5*(start+end)-0.5*(end-start)*math.cos((2*j+1)*math.pi/6))
-    print("Chebyshev spacing is:")
-    print("in range-",start,":",end)
-    print(listx)
+    # can print chebyshev spacing
+    #print("Chebyshev spacing is:")
+    #print("in range-",start,":",end)
+    #print(listx)
+
+    # returns lis of x values
     return listx
 
 # express in terms of list of points from chebyshev
@@ -20,9 +24,7 @@ def chebyshev(n, start, end):
 #k2=l1/l2
 #k3= 
 def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
-    #turn xs into 3 sets of thetas
-    #gamma=105-165 beta= 240-330 angles
-
+    #turn spacing x values into 3 sets of thetas
     #find gamma=ax+b
     #t2=a, b2=b
     t2,b2= sym.symbols('t2,b2')
@@ -37,14 +39,7 @@ def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
     t41= sym.Eq(funct(minx)*t4+b4,bmin)
     t42= sym.Eq(funct(maxx)*t4+b4,bmax)
     tb4= sym.solve([t41,t42],(t4,b4))
-    #print(tb4)
-
-    # theta21=tb2['t2']*listx[0]+tb2['b2']
-    # theta41=tb4['t4']*listx[0]+tb4['b4']
-    # theta22=tb2['t2']*listx[1]+tb2['b2']
-    # theta42=tb4['t4']*listx[1]+tb4['b4']
-    # theta23=tb2['t2']*listx[2]+tb2['b2']
-    # theta43=tb4['t4']*listx[2]+tb4['b4']
+    
     #use values of a,b,c,d to find theta 2,4 values at chebyshev spacing points
     theta21=math.radians(tb2[t2]*listx[0]+tb2[b2])
     theta41=math.radians(tb4[t4]*funct(listx[0])+tb4[b4])
@@ -52,17 +47,15 @@ def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
     theta42=math.radians(tb4[t4]*funct(listx[1])+tb4[b4])
     theta23=math.radians(tb2[t2]*listx[2]+tb2[b2])
     theta43=math.radians(tb4[t4]*funct(listx[2])+tb4[b4])
-    #
-    #simultaneous with three freudenstiens
+    
+    #simultaneous with three freudenstien equations
     k1,k2,k3 = sym.symbols('k1,k2,k3')
     Eq1= sym.Eq(k1*math.cos(theta21)+k2*math.cos(theta41)+k3, math.cos(theta21-theta41))
     Eq2= sym.Eq(k1*math.cos(theta22)+k2*math.cos(theta42)+k3, math.cos(theta22-theta42))
     Eq3= sym.Eq(k1*math.cos(theta23)+k2*math.cos(theta43)+k3, math.cos(theta23-theta43))
     result = sym.solve([Eq1,Eq2,Eq3],(k1,k2,k3))
-    #print(result)
     #convert k values  into lengths
     # set l1 to 1
-    #result[0]=k1
     res= dict()
     res["l1"]=1
     res["l4"]=res["l1"]/result[k1]
@@ -71,10 +64,8 @@ def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
     eq4= sym.Eq((l3*l3-res["l1"]*res["l1"]-res["l2"]*res["l2"]-res["l4"]*res["l4"])/(2*res["l4"]*res["l2"]), result[k3])
     res["l3"]=sym.solve(eq4,l3)
     res["l3"]=res["l3"][1]
-    #print(res)
 
-
-    #l1=0
+    #returns result
     return res  
 
 def freudstienloop(listx, maxx,minx, funct):
