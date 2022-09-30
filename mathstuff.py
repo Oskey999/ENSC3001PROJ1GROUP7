@@ -81,7 +81,6 @@ def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
     eq4= sym.Eq((l3*l3-res["l1"]*res["l1"]-res["l2"]*res["l2"]-res["l4"]*res["l4"])/(2*res["l4"]*res["l2"]), result[k3])
     res["l3"]=sym.solve(eq4,l3)
     res["l3"]=res["l3"][1]
-
     #returns result
     return res  
 

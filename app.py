@@ -29,13 +29,15 @@ def main():
         x=xv
         #filter sin
         t=fun
+        s=0
+        l=0
         if "sin" in fun:
-            x=math.sin(xv)
-            t=fun.replace("sin","")
+            s=math.sin(xv)
+            t=t.replace("sin(x)","s")
         #filter log
-        elif "log" in fun:
-            x=math.log10(xv)
-            t=fun.replace("log","")
+        if "log" in fun:
+            l=math.log10(xv)
+            t=t.replace("log(x)","l")
         #will evaluate polynomial with a set value of x
         return eval(t)
 
@@ -48,13 +50,14 @@ def main():
 
     #math to do
     #graph function
-    #window.graph(functii,rangemin,rangemax)
+    window.graph(functii,int(rangemin),int(rangemax)+1)
     #find chebyshev spacing and put in a list of x values
     listx=chebyshev(3,rangemin,rangemax)
     #draw points on graph for points of chebyshev spacing
-    #window.drawspacing(functii,listx,rangemin,rangemax)
+    window.drawspacing(functii,listx,int(rangemin),int(rangemax)+1)
     # finds the 4 lengths
-    freudstienloop(listx,rangemin,rangemax,functii)
+    res=freudstienloop(listx,rangemin,rangemax,functii)
+    window.draw4bar(res,2,functii,rangemin,rangemax)
 
     #for the window must be last
     root.mainloop()
