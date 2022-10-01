@@ -43,12 +43,22 @@ class Window(Canvas):
     #to finish
     def draw4bar(self,res, x,funct, startx, endx):
         rangex=endx-startx
-        #maxy=max(funct(value/10) for value in range(startx, (endx+1)*10-startx))+(self.height/20000)
+        maxy=max(funct(value/10) for value in range(startx, (endx+1)*10-startx))+(self.height/20000)
         #print("hello")
         #t2,t4= sym.symbols('t2,t4')
+        #l1
         self.create_circle(0,self.height,10,"green")
         self.create_line(0,self.height,res["l1"]*self.width/rangex,self.height,width=5,fill='green')
         self.create_circle(res["l1"]*self.width/rangex,self.height,10,"green")
+        #l2
+        #print(res["t22"])
+        self.create_circle(math.cos(res["t22"])*res["l2"]*self.width/rangex,self.height*(1-(math.sin(res["t22"])*res["l2"])/maxy),10,"green")
+        self.create_line(0,self.height,math.cos(res["t22"])*res["l2"]*self.width/rangex,self.height*(1-(math.sin(res["t22"])*res["l2"])/maxy)+100,width=5,fill='green')
+        #l4
+        print(res["t42"])
+        self.create_circle((math.cos(res["t42"])*res["l3"]+res["l1"])*self.width/rangex,self.height*(1-(math.sin(res["t42"])*res["l3"])/maxy),10,"green")
+        #self.create_line(0,self.height,math.cos(res["t22"])*res["l2"]*self.width/rangex,self.height*(1-(math.sin(res["t22"])*res["l2"])/maxy)+100,width=5,fill='green')
+
 
 
 

@@ -57,7 +57,11 @@ def main():
     window.drawspacing(functii,listx,int(rangemin),int(rangemax)+1)
     # finds the 4 lengths
     res=freudstienloop(listx,rangemin,rangemax,functii)
-    window.draw4bar(res,2,functii,rangemin,rangemax)
+    print("l1:"+str(res["l1"]))
+    print("l2:"+str(res["l2"]))
+    print("l3:"+str(res["l3"]))
+    print("l4:"+str(res["l4"]))
+    window.draw4bar(res,2,functii,int(rangemin),int(rangemax)+1)
 
     #for the window must be last
     root.mainloop()

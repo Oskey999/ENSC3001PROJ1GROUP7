@@ -56,31 +56,33 @@ def freudstien(listx, maxx,minx, funct, gmin, gmax, bmin, bmax):
 
     
     #use values of a,b,c,d to find theta 2,4 values at chebyshev spacing points
-    theta21=math.radians(tb2[t2]*listx[0]+tb2[b2])
-    theta41=math.radians(tb4[t4]*funct(listx[0])+tb4[b4])
-    theta22=math.radians(tb2[t2]*listx[1]+tb2[b2])
-    theta42=math.radians(tb4[t4]*funct(listx[1])+tb4[b4])
-    theta23=math.radians(tb2[t2]*listx[2]+tb2[b2])
-    theta43=math.radians(tb4[t4]*funct(listx[2])+tb4[b4])
+    res["t21"]=math.radians(tb2[t2]*listx[0]+tb2[b2])
+    res["t41"]=math.radians(tb4[t4]*funct(listx[0])+tb4[b4])
+    res["t22"]=math.radians(tb2[t2]*listx[1]+tb2[b2])
+    res["t42"]=math.radians(tb4[t4]*funct(listx[1])+tb4[b4])
+    res["t23"]=math.radians(tb2[t2]*listx[2]+tb2[b2])
+    res["t43"]=math.radians(tb4[t4]*funct(listx[2])+tb4[b4])
     
     #simultaneous with three freudenstien equations
     k1,k2,k3 = sym.symbols('k1,k2,k3')
-    Eq1= sym.Eq(k1*math.cos(theta21)+k2*math.cos(theta41)+k3, math.cos(theta21-theta41))
-    Eq2= sym.Eq(k1*math.cos(theta22)+k2*math.cos(theta42)+k3, math.cos(theta22-theta42))
-    Eq3= sym.Eq(k1*math.cos(theta23)+k2*math.cos(theta43)+k3, math.cos(theta23-theta43))
+    Eq1= sym.Eq(k1*math.cos(res["t21"])+k2*math.cos(res["t41"])+k3, math.cos(res["t21"]-res["t41"]))
+    Eq2= sym.Eq(k1*math.cos(res["t22"])+k2*math.cos(res["t42"])+k3, math.cos(res["t22"]-res["t42"]))
+    Eq3= sym.Eq(k1*math.cos(res["t23"])+k2*math.cos(res["t43"])+k3, math.cos(res["t23"]-res["t43"]))
     result = sym.solve([Eq1,Eq2,Eq3],(k1,k2,k3))
     #convert k values  into lengths
-    # set l1 to 1
-    if len(result)<3:
+    # make sure nothing will fail
+    if len(result)<3 or result[k1]==0 or result[k2]==0 or result[k3]==0:
         return res
-    
+    # set l1 to 1
     res["l1"]=1
     res["l4"]=res["l1"]/result[k1]
     res["l2"]=res["l1"]/result[k2]
     l3 =sym.symbols('l3')
     eq4= sym.Eq((l3*l3-res["l1"]*res["l1"]-res["l2"]*res["l2"]-res["l4"]*res["l4"])/(2*res["l4"]*res["l2"]), result[k3])
-    res["l3"]=sym.solve(eq4,l3)
-    res["l3"]=res["l3"][1]
+    vl=sym.solve(eq4,l3)
+    if  not len(vl)==2:
+        return res
+    res["l3"]=vl[1]
     #returns result
     return res  
 
@@ -111,7 +113,8 @@ def freudstienloop(listx, maxx,minx, funct):
             if bmax==330:
                 print("failure")
                 return[]
+        print(sol)
             
     
-    print(sol)
+    
     return sol
