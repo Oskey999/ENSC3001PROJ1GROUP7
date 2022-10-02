@@ -3,7 +3,7 @@ from cmath import log10
 import math
 #for the window
 from tkinter import *
-from window import Window
+#from window import Window
 from mathstuff import chebyshev, freudstienloop
 #for the evaluation
 import re
