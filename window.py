@@ -57,7 +57,9 @@ class Window(Canvas):
         #l4
         print(res["t42"])
         self.create_circle((math.cos(res["t42"])*res["l3"]+res["l1"])*self.width/rangex,self.height*(1-(math.sin(res["t42"])*res["l3"])/maxy),10,"green")
-        #self.create_line(0,self.height,math.cos(res["t22"])*res["l2"]*self.width/rangex,self.height*(1-(math.sin(res["t22"])*res["l2"])/maxy)+100,width=5,fill='green')
+        self.create_line(res["l1"]*self.width/rangex,self.height,(math.cos(res["t42"])*res["l3"]+res["l1"])*self.width/rangex,self.height*(1-(math.sin(res["t42"])*res["l3"])/maxy),width=5,fill='green')
+        #l3
+        self.create_line(math.cos(res["t22"])*res["l2"]*self.width/rangex,self.height*(1-(math.sin(res["t22"])*res["l2"])/maxy),math.cos(res["t22"])*res["l2"]*self.width/rangex,self.height*(1-(math.sin(res["t22"])*res["l2"])/maxy),width=5,fill='green')
 
 
 

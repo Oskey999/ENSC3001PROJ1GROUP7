@@ -113,8 +113,5 @@ def freudstienloop(listx, maxx,minx, funct):
             if bmax==330:
                 print("failure")
                 return[]
-        print(sol)
             
-    
-    
     return sol

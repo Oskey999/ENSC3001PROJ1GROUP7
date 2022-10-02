@@ -10,13 +10,13 @@ import re
 
 def main():
     #make window
-    root=Tk()
-    root.title("4-bar")
-    w=1500
-    h=1000
-    root.minsize(w,h)
-    window= Window(w,h)
-    window.pack(pady=40,padx=40)
+   # root=Tk()
+   # root.title("4-bar")
+   # w=1500
+   # h=1000
+   # root.minsize(w,h)
+    #window= Window(w,h)
+    #window.pack(pady=40,padx=40)
 
     #prompts start
     print("Project")
@@ -50,21 +50,21 @@ def main():
 
     #math to do
     #graph function
-    window.graph(functii,int(rangemin),int(rangemax)+1)
+    #window.graph(functii,int(rangemin),int(rangemax)+1)
     #find chebyshev spacing and put in a list of x values
     listx=chebyshev(3,rangemin,rangemax)
     #draw points on graph for points of chebyshev spacing
-    window.drawspacing(functii,listx,int(rangemin),int(rangemax)+1)
+    #window.drawspacing(functii,listx,int(rangemin),int(rangemax)+1)
     # finds the 4 lengths
     res=freudstienloop(listx,rangemin,rangemax,functii)
     print("l1:"+str(res["l1"]))
     print("l2:"+str(res["l2"]))
     print("l3:"+str(res["l3"]))
     print("l4:"+str(res["l4"]))
-    window.draw4bar(res,2,functii,int(rangemin),int(rangemax)+1)
+    #window.draw4bar(res,2,functii,int(rangemin),int(rangemax)+1)
 
     #for the window must be last
-    root.mainloop()
+   # root.mainloop()
 
 
 
